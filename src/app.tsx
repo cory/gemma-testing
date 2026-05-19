@@ -1,33 +1,50 @@
-import { Section, Pill, Markdown } from "@odla-ai/ui";
-import { Globe } from "lucide-preact";
+import { useState, useEffect } from "preact/hooks";
+import { SegmentedControl } from "@odla-ai/ui";
+import { Home } from "./components/Home";
+import { Tetris } from "./components/Tetris";
 
 export function App() {
+  const [activeTab, setActiveTab] = useState<"home" | "tetris">("home");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#tetris") {
+        setActiveTab("tetris");
+      } else if (window.location.hash === "#home") {
+        setActiveTab("home");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    // Check initial hash
+    handleHashChange();
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <Section heading="Hello World!">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-          <Globe size={24} />
-          <p style={{ margin: 0 }}>Welcome to my web app!</p>
-        </div>
-        <Markdown 
-          text={`
-**Hello World!** 
-
-I am a web app built with **Preact**, **Vite**, and **TypeScript**.
-
-I am using:
-- [@odla-ai/ui](https://github.com/odla-ai/ui) for components
-- [lucide-preact](https://lucide.dev/) for icons
-- [Vite](https://vitejs.dev/) for the build tool
-
-This site was built following the Firesafe VM Web Toolkit guidelines.
-          `} 
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh',
+      maxWidth: '800px',
+      margin: '0 auto',
+      padding: '1rem'
+    }}>
+      <div style={{ marginBottom: '2rem' }}>
+        <SegmentedControl
+          options={[
+            { label: "Home", value: "home" },
+            { label: "Tetris", value: "tetris" },
+          ]}
+          value={activeTab}
+          onChange={(val) => setActiveTab(val as "home" | "tetris")}
         />
-        <div style={{ marginTop: '1rem' }}>
-          <Pill variant="success">Built with Preact</Pill>
-          <Pill variant="info" style={{ marginLeft: '0.5rem' }}>Vite Ready</Pill>
-        </div>
-      </Section>
+      </div>
+
+      <main>
+        {activeTab === "home" ? <Home /> : <Tetris />}
+      </main>
     </div>
   );
 }
