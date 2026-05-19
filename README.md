@@ -12,14 +12,7 @@ This is a project to test how well Gemma 4 can handle building a web app!
 - **Home**: A landing page showcasing the project's features and the technology stack used.
 - **Tetris**: A fully functional, interactive Tetris game implementation.
 
-## Decisions
-- **Preact**: Chosen for its small footprint and high performance, making it ideal for a lightweight web app.
-- **Vite**: Used as the build tool and development server for its speed and excellent TypeScript support.
-- **@odla-ai/ui**: Leveraged to provide high-quality, accessible, and consistent UI primitives.
-- **Lucide-preact**: Used for a clean and modern icon set.
-- **TypeScript**: Implemented to ensure type safety and improve developer experience.
-
-## Completed
-* Improved home page design
-* Implemented tabbed interface (Home & Tetris)
-* Implemented functional Tetris game
+## To dos
+* Fix font color and make tab buttons clearer
+* Tetris not showing game boundary or grid
+* Make Tetris support keyboard commands and how next tetris block
