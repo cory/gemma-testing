@@ -8,4 +8,6 @@ This is a project to test how well Gemma 4 can handle building a web app!
 4. Use typescript and appropriate node or node-ish tooling
 
 ## TO DOs
-1. Create a Hello, World website that describes itself
+* Make the design of the home page better
+* Make the overall design tabs, with home and tetris
+* Make the second tab tetris
